@@ -224,6 +224,40 @@ final class InventoriesConfigNodes {
             .name("global-profile-cache-expiry")
             .build());
 
+    private final ConfigHeaderNode globalInventoryFilterHeader = node(ConfigHeaderNode.builder("global-inventory-item-filter")
+            .comment("")
+            .comment("")
+            .comment("#-----------------------------------------------------------------------------------------------------------------#")
+            .comment("#                                                                                                                 #")
+            .comment("#                          Global Inventory Item Filtering                                                        #")
+            .comment("#                                                                                                                 #")
+            .comment("#-----------------------------------------------------------------------------------------------------------------#")
+            .comment("")
+            .comment("This section allows you to define a global whitelist or blacklist for items that should always be")
+            .comment("shared between worlds, regardless of world group settings.")
+            .build());
+
+    final ConfigNode<Boolean> globalFilterEnabled = node(ConfigNode.builder("global-inventory-item-filter.enabled", Boolean.class)
+            .comment("Set to 'true' to enable the global item filter.")
+            .defaultValue(false)
+            .name("enabled")
+            .build());
+
+    final ConfigNode<String> globalFilterMode = node(ConfigNode.builder("global-inventory-item-filter.mode", String.class)
+            .comment("The mode for the global filter. Can be 'WHITELIST' or 'BLACKLIST'.")
+            .comment(" - WHITELIST: Only items in the list will be transferred between all worlds, in addition to any group settings.")
+            .comment(" - BLACKLIST: Items in the list will NOT be transferred between any worlds, regardless of group settings.")
+            .defaultValue("WHITELIST")
+            .name("mode")
+            .build());
+
+    final ListConfigNode<String> globalFilterItems = node(ListConfigNode.listBuilder("global-inventory-item-filter.items", String.class)
+            .comment("A list of item IDs (e.g., 'minecraft:diamond_sword', 'myplugin:custom_item').")
+            .comment("Item namespaced keys are case sensitive!")
+            .defaultValue(ArrayList::new)
+            .name("items")
+            .build());
+
     private final ConfigHeaderNode miscHeader = node(ConfigHeaderNode.builder("misc")
             .comment("")
             .comment("")
