@@ -256,6 +256,12 @@ public final class InventoriesConfig {
         return this.configHandle.set(configNodes.globalProfileCacheExpiry, globalProfileCacheExpiry);
     }
 
+    public boolean getGlobalFilterEnabled() { return this.configHandle.get(configNodes.globalFilterEnabled); }
+
+    public String getGlobalFilterMode() { return this.configHandle.get(configNodes.globalFilterMode); }
+
+    public List<String> getGlobalFilterItems() { return this.configHandle.get(configNodes.globalFilterItems); }
+
     /**
      * Get the value of registerPapiHook
      *
